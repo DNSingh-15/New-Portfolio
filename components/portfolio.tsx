@@ -16,13 +16,13 @@ const data = [
     },
     {
         id: 3,
-        image: "/images/ceyone.jpg ",
+        image: "/images/ceyone.jpg",
         title: "The Ceyone website",
         link: "https://beta.theceyone.com/"
     },
     {
         id: 4,
-        image: "/images/portfolio5.png ",
+        image: "/images/portfolio5.png",
         title: "Matrimonial Website",
         github: "https://github.com/DNSingh-15/MWD",
         link: "http://matrimonywebsitedesigners.com/"
