@@ -1,10 +1,10 @@
-import About from "@/components/about";
-import Contact from "@/components/contact/index";
-import Experience from "@/components/experience";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-import Portfolio from "@/components/portfolio";
-import Testimonials from "@/components/testimonials";
+import About from "../components/about";
+import Contact from "../components/contact/index";
+import Experience from "../components/experience";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import Portfolio from "../components/portfolio";
+import Testimonials from "../components/testimonials";
 import Image from "next/image";
 
 export default function Home() {
