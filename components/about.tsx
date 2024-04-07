@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 const About = () => {
     return (
-        <div>
+        <div id='about'>
             <div className='flex item center justify-center animate-slide-up'>
                 <div className='eurostile'>
                     <h5 className='sm:text-[18px] text-[15px]'>Get To Know</h5>
