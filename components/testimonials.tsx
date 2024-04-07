@@ -36,7 +36,7 @@ const data = [
 
 const Testimonials = () => {
     return (
-        <div className='relative'>
+        <div className='relative' id='testimonials'>
             <div className="absolute inset-0">
                 <Image
                     height={2000}
