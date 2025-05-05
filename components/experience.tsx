@@ -1,175 +1,130 @@
+'use client';
+
 import React from 'react';
 import { BsPatchCheckFill } from 'react-icons/bs';
-import "../app/globals.css"
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const Experience = () => {
-    return (
-        <section id="experience" className="py-16">
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+    triggerOnce: true
+  });
 
-            <div className='flex item center justify-center'>
-                <div className='eurostile animate-slide-up'>
-                    <h5 className='sm:text-[18px] text-[15px] ml-7 sm:ml-0'>What Skills I Have</h5>
-                    <h1 className='sm:text-[30px] text-[24px] -ml-4 sm:-ml-16 font-medium mt-3'>MY EXPERIENCE</h1>
-                </div>
-            </div>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.3
+      }
+    }
+  };
 
-            <div className="container grid grid-cols-1 md:grid-cols-2 gap-8 eurostile sm:mt-12 mt-8 animate-slide-up">
-                {/* Languages */}
-                <div className="bg-[#120b29] rounded-xl p-6 hover:border-[#5F00F1] transition-all hover:bg-transparent border border-transparent">
-                    <h3 className="text-center sm:text-2xl text-xl mb-6">Languages</h3>
-                    <div className="grid grid-cols-2 gap-8 text-[13px] sm:text-[16px]">
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>HTML</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>CSS</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Javascript</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Typescript</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Python</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Go</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>YAML</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Markdown</div>
-                        </div>
-                    </div>
-                </div>
+  const itemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: 'easeOut'
+      }
+    }
+  };
 
+  const cardVariants = {
+    hover: {
+      y: -8,
+      boxShadow: "0 12px 24px rgba(95, 0, 241, 0.25)",
+      borderColor: "#5F00F1",
+      transition: { duration: 0.3, ease: 'easeOut' }
+    }
+  };
 
-                {/* Frontend */}
-                <div className="bg-[#120b29] rounded-xl p-6 hover:border-[#5F00F1] transition-all hover:bg-transparent border border-transparent">
-                    <h3 className="text-center sm:text-2xl text-xl mb-6">FRONTEND DEVELOPMENT</h3>
-                    <div className="grid grid-cols-2 gap-8 text-[13px] sm:text-[16px]">
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>React.Js</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Next.Js</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Tailwind CSS</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Material UI</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Vue.Js</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Nuxt.Js</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Vuetify</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Axios</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>WordPress</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>JQuery</div>
-                        </div>
-                    </div>
-                </div>
+  const skillItemVariants = {
+    hover: {
+      scale: 1.05,
+      x: 5,
+      transition: { duration: 0.2 }
+    }
+  };
 
-                {/* Backend */}
-                <div className="bg-[#120b29] rounded-xl p-6 hover:border-[#5F00F1] transition-all hover:bg-transparent border border-transparent">
-                    <h3 className="text-center sm:text-2xl text-xl mb-6">BACKEND DEVELOPMENT</h3>
-                    <div className="grid grid-cols-2 gap-8 text-[13px] sm:text-[16px]">
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Node.js</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Express.Js</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>JWT</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>MQTT</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>WebSocket</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>AWS</div>
-                        </div>
-                    </div>
-                </div>
+  const categories = [
+    {
+      title: "Languages",
+      skills: ["HTML5", "CSS3", "JavaScript", "TypeScript", "Python", "Go", "YAML", "Markdown"]
+    },
+    {
+      title: "Frontend Development",
+      skills: ["React.js", "Next.js", "Tailwind CSS", "Material UI", "Redux", "GraphQL", "Vue.js", "Nuxt.js", "Axios", "Jest"]
+    },
+    {
+      title: "Backend Development",
+      skills: ["Node.js", "Express.js", "NestJS", "GraphQL", "REST APIs", "JWT", "WebSocket", "MQTT", "Serverless"]
+    },
+    {
+      title: "Databases",
+      skills: ["MongoDB", "PostgreSQL", "MySQL", "MSSQL", "DynamoDB", "Firebase", "Prisma", "TypeORM"]
+    },
+    {
+      title: "Cloud & DevOps",
+      skills: ["AWS", "Vercel", "Docker", "Kubernetes", "CI/CD", "Terraform", "Serverless", "Lambda", "S3", "CloudFront"]
+    },
+    {
+      title: "Tools & Methods",
+      skills: ["Git", "GitHub", "Bitbucket", "Jira", "Agile", "Scrum", "TDD", "Postman", "Swagger", "Figma"]
+    }
+  ];
 
-                {/* Database */}
-                <div className="bg-[#120b29] rounded-xl p-6 hover:border-[#5F00F1] transition-all hover:bg-transparent border border-transparent">
-                    <h3 className="text-center sm:text-2xl text-xl mb-6">Database and Others</h3>
-                    <div className="grid grid-cols-2 gap-8 text-[13px] sm:text-[16px]">
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>MongoDB</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Firebase</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Git</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Jira</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Bitbucket</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Agile methodology</div>
-                        </div>
-                        <div className='flex'>
-                            <BsPatchCheckFill className='text-[#4e33a9]'/>
-                            <div className='ml-2 -mt-1'>Vercel</div>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <section id="experience" className="py-20 px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        variants={containerVariants}
+        className="w-full"
+      >
+        <motion.div variants={itemVariants} className="text-center mb-16">
+          <h5 className="text-lg sm:text-xl text-purple-400 font-medium mb-2">What Skills I Have</h5>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+            MY EXPERTISE
+          </h1>
+          <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-pink-600 mx-auto mt-4 rounded-full" />
+        </motion.div>
 
-            </div>
-        </section>
-    );
-}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {categories.map((category, index) => (
+            <motion.div
+              key={index}
+              whileHover="hover"
+              variants={cardVariants}
+              className="bg-gradient-to-br from-[#120b29] to-[#1e0f4d] rounded-xl p-6 border border-[#2a1b5e] shadow-lg"
+            >
+              <h3 className="text-center text-xl sm:text-2xl mb-6 font-medium text-white">
+                {category.title}
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                {category.skills.map((skill, skillIndex) => (
+                  <motion.div
+                    key={skillIndex}
+                    variants={skillItemVariants}
+                    whileHover="hover"
+                    className="flex items-center py-2 px-3 rounded-lg hover:bg-[#2a1b5e]/50 transition-colors"
+                  >
+                    <BsPatchCheckFill className='text-purple-400 text-lg flex-shrink-0' />
+                    <span className='ml-3 text-gray-200 text-sm sm:text-base'>{skill}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </section>
+  );
+};
 
 export default Experience;
