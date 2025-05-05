@@ -1,44 +1,126 @@
-import Image from 'next/image';
-import React from 'react';
+'use client';
+
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import { BsInstagram, BsGithub, BsLinkedin, BsTwitter } from 'react-icons/bs';
 
 const Footer = () => {
+    const [ref, inView] = useInView({
+        threshold: 0.1,
+        triggerOnce: true
+    });
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.3
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                duration: 0.5,
+                ease: "easeOut"
+            }
+        }
+    };
+
+    const iconVariants = {
+        hover: {
+            y: -5,
+            scale: 1.2,
+            color: "#d8b4fe",
+            transition: {
+                duration: 0.2
+            }
+        }
+    };
+
+    const linkVariants = {
+        hover: {
+            color: "#d8b4fe",
+            transition: {
+                duration: 0.2
+            }
+        }
+    };
+
     return (
-        <div className=''>
-            <div className="bg-primary py-12 text-white text-sm text-center mt-28 eurostile sm:mx-16 mx-6">
-                <a href="#" className="text-2xl font-semibold block mb-8 animate-slide-up">D N SINGH</a>
-                <div className="flex flex-wrap justify-center lg:gap-8 sm:gap-6 gap-4 mb-12 sm:text-[18px] text-[15px]">
-                    <div>
-                        <a href="#" className="text-white hover:text-gray-300 cursor-pointer">Home</a>
-                    </div>
-                    <div>
-                        <a href="#about" className="text-white hover:text-gray-300">About</a>
-                    </div>
-                    <div>
-                        <a href="#experience" className="text-white hover:text-gray-300">Experience</a>
-                    </div>
-                    <div>
-                        <a href="#portfolio" className="text-white hover:text-gray-300">Portfolio</a>
-                    </div>
-                    <div>
-                        <a href="#testimonials" className="text-white hover:text-gray-300">Testimonials</a>
-                    </div>
-                    <div>
-                        <a href="#contact" className="text-white hover:text-gray-300">Contact</a>
-                    </div>
-                </div>
-                <div className="flex justify-center gap-10 mb-16 sm:text-[22px] text-[18px]">
-                    <a href="https://www.linkedin.com/in/%F0%9D%90%83-%F0%9D%90%8D-%F0%9D%90%92%F0%9D%90%88%F0%9D%90%8D%F0%9D%90%86%F0%9D%90%87-49b85b1b2/" className="text-white hover:text-gray-300"><BsLinkedin /></a>
-                    <a href="https://github.com/DNSingh-15" className="text-white hover:text-gray-300"><BsGithub /></a>
-                    <a href="https://instagram.com/__dnsingh_15__?igshid=ZDdkNTZiNTM=" className="text-white hover:text-gray-300"><BsInstagram /></a>
-                    <a href="https://twitter.com/DNSingh_15?t=xWdK5Bg918dBMaCp3UDeWQ&s=09" className="text-white hover:text-gray-300"><BsTwitter /></a>
-                </div>
-                <div className="text-gray-300 sm:text-[14px] text-[12px]">
-                    <div>&copy; D N Singh Personal Website. All rights riversed.</div>
-                </div>
-            </div>
-        </div>
+        <footer className="bg-gradient-to-b from-[#120b29] to-[#1e0f4d] py-16 text-white mt-28 border-t border-[#2a1b5e]">
+            <motion.div
+                ref={ref}
+                initial="hidden"
+                animate={inView ? "visible" : "hidden"}
+                variants={containerVariants}
+                className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 text-center"
+            >
+                <motion.a
+                    href="#"
+                    variants={itemVariants}
+                    className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 block mb-8"
+                >
+                    D N SINGH
+                </motion.a>
+
+                <motion.div
+                    variants={containerVariants}
+                    className="flex flex-wrap justify-center gap-6 mb-12 text-sm sm:text-base"
+                >
+                    {['Home', 'About', 'Experience', 'Portfolio', 'Testimonials', 'Contact'].map((item, index) => (
+                        <motion.div key={index} variants={itemVariants}>
+                            <motion.a
+                                href={`#${item.toLowerCase()}`}
+                                variants={linkVariants}
+                                whileHover="hover"
+                                className="text-white"
+                            >
+                                {item}
+                            </motion.a>
+                        </motion.div>
+                    ))}
+                </motion.div>
+
+                <motion.div
+                    variants={containerVariants}
+                    className="flex justify-center gap-8 mb-16 text-2xl"
+                >
+                    {[
+                        { icon: <BsLinkedin />, href: "https://www.linkedin.com/in/d-n-singh-49b85b1b2/" },
+                        { icon: <BsGithub />, href: "https://github.com/DNSingh-15" },
+                        { icon: <BsInstagram />, href: "https://instagram.com/__dnsingh_15__" },
+                        { icon: <BsTwitter />, href: "https://twitter.com/DNSingh_15" }
+                    ].map((social, index) => (
+                        <motion.a
+                            key={index}
+                            variants={itemVariants}
+                            whileHover="hover"
+                            href={social.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white"
+                        >
+                            {social.icon}
+                        </motion.a>
+                    ))}
+                </motion.div>
+
+                <motion.div
+                    variants={itemVariants}
+                    className="text-gray-300 text-xs sm:text-sm"
+                >
+                    &copy; {new Date().getFullYear()} D N Singh. All rights reserved.
+                </motion.div>
+            </motion.div>
+        </footer>
     );
-}
+};
 
 export default Footer;
