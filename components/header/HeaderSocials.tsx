@@ -1,15 +1,59 @@
+'use client';
+
 import React from 'react';
+import { motion } from 'framer-motion';
 import { BsLinkedin, BsGithub } from 'react-icons/bs';
 import { TfiEmail } from 'react-icons/tfi';
 
 const HeaderSocials = () => {
-    return (
-        <div className='flex flex-col items-center gap-6 absolute left-0 bottom-12'>
-            <a href="https://www.linkedin.com/in/%F0%9D%90%83-%F0%9D%90%8D-%F0%9D%90%92%F0%9D%90%88%F0%9D%90%8D%F0%9D%90%86%F0%9D%90%87-49b85b1b2/" target="_blank" className='text-primary text-[14px]'><BsLinkedin /></a>
-            <a href='https://github.com/DNSingh-15' target="_blank" className='text-primary text-[14px]'><BsGithub /></a>
-            <a href="mailto:asmrdnsingh@gmail.com" target="_blank" className='text-primary text-[14px]'><TfiEmail /></a>
-        </div>
-    );
-}
+  const socialLinks = [
+    {
+      icon: <BsLinkedin className="text-2xl" />,
+      url: "https://www.linkedin.com/in/dnsingh",
+    },
+    {
+      icon: <BsGithub className="text-2xl" />,
+      url: "https://github.com/DNSingh-15",
+    },
+    {
+      icon: <TfiEmail className="text-2xl" />,
+      url: "mailto:asmrdnsingh@gmail.com",
+    }
+  ];
+
+  const itemVariants = {
+    hover: {
+      y: -5,
+      scale: 1.2,
+      color: "#5F00F1",
+      transition: {
+        duration: 0.2
+      }
+    }
+  };
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1 }}
+      className="flex flex-col items-center gap-6 absolute left-8 bottom-12"
+    >
+      {socialLinks.map((social, index) => (
+        <motion.a
+          key={index}
+          href={social.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          variants={itemVariants}
+          whileHover="hover"
+          className="text-purple-400 hover:text-purple-300 transition-colors"
+        >
+          {social.icon}
+        </motion.a>
+      ))}
+    </motion.div>
+  );
+};
 
 export default HeaderSocials;

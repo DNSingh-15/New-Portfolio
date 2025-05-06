@@ -92,7 +92,7 @@ const About = () => {
                 <FiUsers className='text-purple-400 text-2xl' />
               </div>
               <h5 className="text-white font-medium text-lg mb-2">Clients</h5>
-              <div className="text-purple-200">8+ Worldwide</div>
+              <div className="text-purple-200">18+ Worldwide</div>
             </motion.article>
 
             <motion.article 
@@ -104,7 +104,7 @@ const About = () => {
                 <VscFolderLibrary className='text-purple-400 text-2xl' />
               </div>
               <h5 className="text-white font-medium text-lg mb-2">Projects</h5>
-              <div className="text-purple-200">50+ Completed</div>
+              <div className="text-purple-200">70+ Completed</div>
             </motion.article>
 
             <motion.article 
@@ -115,8 +115,8 @@ const About = () => {
               <div className="bg-[#2a1b5e] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FaCode className='text-purple-400 text-2xl' />
               </div>
-              <h5 className="text-white font-medium text-lg mb-2">Frontend</h5>
-              <div className="text-purple-200">React, Next.js</div>
+              <h5 className="text-white font-medium text-lg mb-2">Full Stack</h5>
+              <div className="text-purple-200">React, Node, Nest</div>
             </motion.article>
           </motion.div>
 

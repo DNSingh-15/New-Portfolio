@@ -1,18 +1,44 @@
-/* eslint-disable react/no-unescaped-entities */
+'use client';
+
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const CTA = () => {
+  const buttonVariants = {
+    hover: {
+      scale: 1.05,
+      boxShadow: "0 5px 15px rgba(95, 0, 241, 0.3)",
+      transition: { duration: 0.2 }
+    },
+    tap: {
+      scale: 0.98
+    }
+  };
+
   return (
-    <div className="mt-10 flex justify-center space-x-3 eurostile">
+    <div className="flex justify-center gap-6">
+      <motion.a
+        href="/images/DN_CV.pdf"
+        download
+        variants={buttonVariants}
+        whileHover="hover"
+        whileTap="tap"
+        className="px-6 py-3 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium"
+      >
+        Download CV
+      </motion.a>
 
-      <a href="/images/DN_CV.pdf" download className='sm:px-6 mr-4 px-3 py-2 rounded-xl shadow-lg text-white transition duration-300 ease-in-out transform hover:scale-105' style={{ background: 'linear-gradient(to right, #8e2de2, #4a00e0)' }}>Download CV</a>
-
-      <div className='mt-[7px]'>
-        <a href="#contact" className='text-white transition duration-300 ease-in-out transform hover:scale-105 sm:text-[18px] text-[16px]'>Let's Talk</a>
-      </div>
-
+      <motion.a
+        href="#contact"
+        variants={buttonVariants}
+        whileHover="hover"
+        whileTap="tap"
+        className="px-6 py-3 rounded-lg border border-purple-500 text-white font-medium"
+      >
+        Let's Talk
+      </motion.a>
     </div>
   );
-}
+};
 
 export default CTA;
